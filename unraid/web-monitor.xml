@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>web-monitor</Name>
+  <Repository>web-monitor</Repository>
+  <Registry>local</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/</Support>
+  <Overview>A web monitoring tool that checks a specified webpage for text matches and sends email notifications when matches are found. Perfect for monitoring forums, news sites, or any webpage for specific content. Features configurable search terms, monitoring intervals, and email notifications.</Overview>
+  <Category>Tools:</Category>
+  <WebUI/>
+  <TemplateURL/>
+  <Icon>https://raw.githubusercontent.com/docker-library/docs/c350af05d3fac7b5c3f6327ac82fe4d990d8729c/python/logo.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <DonateText/>
+  <DonateLink/>
+  <Description>This container provides a webpage monitoring service with the following features:
+
+- Monitors any specified webpage URL for custom search terms
+- Searches for multiple terms appearing in the same line
+- Sends email notifications when matches are found
+- Tracks previously seen matches to avoid duplicate notifications
+- Configurable check interval (default 5 minutes)
+- Supports Gmail and other SMTP email providers
+- Persistent storage for configuration and logs
+- Automatic restart on system boot
+
+Configuration:
+- Website URL: The webpage to monitor
+- Search Terms: Comma-separated list of terms to search for
+- Check Interval: Time between checks in seconds
+- Email Settings: SMTP server details and credentials
+
+The monitor keeps track of previously seen matches to prevent duplicate notifications and logs all activity for troubleshooting.</Description>
+  <Config Name="Website URL" Target="MONITOR_URL" Default="" Mode="" Description="URL to monitor" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Search Terms" Target="SEARCH_STRINGS" Default="" Mode="" Description="Comma-separated list of terms to search for" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Check Interval" Target="CHECK_INTERVAL" Default="300" Mode="" Description="Time between checks in seconds" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="SMTP Server" Target="SMTP_SERVER" Default="smtp.gmail.com" Mode="" Description="SMTP server address" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="SMTP Port" Target="SMTP_PORT" Default="587" Mode="" Description="SMTP server port" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Sender Email" Target="SENDER_EMAIL" Default="" Mode="" Description="Email address to send from" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Email Password" Target="SENDER_PASSWORD" Default="" Mode="" Description="Email password or app-specific password" Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Recipient Email" Target="RECIPIENT_EMAIL" Default="" Mode="" Description="Email address to send notifications to" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Config Storage" Target="/app/config" Default="/mnt/user/appdata/web-monitor/config" Mode="rw" Description="Config storage path" Type="Path" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="Log Storage" Target="/app/logs" Default="/mnt/user/appdata/web-monitor/logs" Mode="rw" Description="Log storage path" Type="Path" Display="advanced" Required="true" Mask="false"/>
+</Container>
